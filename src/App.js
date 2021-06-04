@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://hn.algolia.com/api/v1/search?query=javascript&tags=story')
+    axios.get(`http://hn.algolia.com/api/v1/search?`)
       .then(res => {
         const arrayOfStories = res.data.hits
         this.setState({ arrayOfStories });
@@ -23,6 +23,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="Header">
+          <form>
+            <input type="text" id="searchTerm"></input>
+            <input type="submit" value="submit"></input>
+          </form> 
           <ol>
             {this.state.arrayOfStories.map((story, index) => {
               return(
