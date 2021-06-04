@@ -1,3 +1,4 @@
+import React from 'react';
 import { Component } from 'react';
 import axios from 'axios';
 
@@ -25,7 +26,7 @@ class App extends Component {
         <header className="Header">
           <form>
             <input type="text" id="searchTerm"></input>
-            <input type="submit" value="submit"></input>
+            <input type="submit" value="submit" onClick="updateState()"></input>
           </form> 
           <ol>
             {this.state.arrayOfStories.map((story, index) => {
@@ -39,5 +40,14 @@ class App extends Component {
     )
   };
 }
+
+const updateState = () => {
+  let searchString = document.getElementById("searchTerm").value;
+  axios.get(`http://hn.algolia.com/api/v1/search?query=${searchString}&tags=story`)
+      .then(res => {
+        const arrayOfStories = res.data.hits
+        this.setState({ arrayOfStories });
+      })
+};
 
 export default App;
