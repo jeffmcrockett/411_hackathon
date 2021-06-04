@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
-
 import './App.css';
+import ListArticles from './component/ListArticles'
 
 class App extends Component {
   constructor() {
@@ -23,13 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="Header">
-          <ol>
-            {this.state.arrayOfStories.map((story, index) => {
-              return(
-              <li key={index}>{story.title}</li>
-                )
-            })}
-          </ol>
+          <ListArticles article={this.state.arrayOfStories}/>
         </header>
       </div>
     )
