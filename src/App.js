@@ -7,14 +7,14 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      arrayOfUsers: []
+      arrayOfStories: []
     }
   }
 
   componentDidMount() {
-    axios.get('http://hn.algolia.com/api/v1/items/:id')
+    axios.get('http://hn.algolia.com/api/v1/search?query=javascript&tags=story')
       .then(res => {
-        const arrayOfStories = res.data
+        const arrayOfStories = res.data.hits
         this.setState({ arrayOfStories });
       })
   }
@@ -26,7 +26,7 @@ class App extends Component {
           <ol>
             {this.state.arrayOfStories.map((story, index) => {
               return(
-              <li key={index}>{story.}</li>
+              <li key={index}>{story.title}</li>
                 )
             })}
           </ol>
