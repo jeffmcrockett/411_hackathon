@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import moment from 'moment'
 
 function ArticleCard(props) {
-  const { title, author, url } = props;
-
+  const { title, author, url, created_at, comments, points } = props;
   return(
     <li style={ {listStyle: "none"} }>
-      <div>
-        <h2><a href={ url } style={ {textDecoration: "none", color: 'black'} }>{ title }</a></h2>
-        <h3>{ author }</h3>
-        <a href={ url }>{ url }</a>
+      <div class="articleHeader">
+        <h2 class="title-container"><a class="title" href={ url } >{ title }</a></h2>
+        <h3 class="author">by: { author }</h3>
+        <a class="link" href={ url }>({ url })</a>
+      </div>
+      <div class="articleFooter">
+        <p>{moment({created_at}).format('DD MMM, YYYY')} | {comments} Comments | {points} Points</p>
       </div>
     </li>
   )

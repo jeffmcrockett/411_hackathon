@@ -8,13 +8,21 @@ class App extends Component {
     super()
     this.state = {
       arrayOfStories: [],
-      searchTerm: "",
       url: ""
     }
   }
   
+  componentDidMount() {
+    axios.get('https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=50')
+      .then(res => {
+        const arrayOfStories = res.data.hits
+        this.setState({ arrayOfStories });
+      })
+  }
+  
+
   componentDidUpdate() {
-    axios.get(`http://hn.algolia.com/api/v1/search?query=${this.state.url}`)
+    axios.get(`http://hn.algolia.com/api/v1/search?query=${this.state.url}&hitsPerPage=50`)
     .then(res => {
       const arrayOfStories = res.data.hits
       this.setState({ arrayOfStories });

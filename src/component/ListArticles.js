@@ -11,6 +11,9 @@ function ListArticles(props) {
             title={article.title}
             author={article.author}
             url={article.url}
+            created_at={article.created_at}
+            comments={article.num_comments}
+            points={article.points}
           />
         )
       })}
