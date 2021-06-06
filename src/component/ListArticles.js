@@ -11,7 +11,6 @@ function ListArticles(props) {
             title={article.title}
             author={article.author}
             url={article.url}
-
           />
         )
       })}

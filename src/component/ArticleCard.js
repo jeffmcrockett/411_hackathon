@@ -6,9 +6,9 @@ function ArticleCard(props) {
   return(
     <li style={ {listStyle: "none"} }>
       <div>
-        <h2>{ title }</h2>
+        <h2><a href={ url } style={ {textDecoration: "none", color: 'black'} }>{ title }</a></h2>
         <h3>{ author }</h3>
-        <p>{ url }</p>
+        <a href={ url }>{ url }</a>
       </div>
     </li>
   )

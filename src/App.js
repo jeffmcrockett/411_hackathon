@@ -8,32 +8,23 @@ class App extends Component {
     super()
     this.state = {
       arrayOfStories: [],
-      searchTerm: ""
+      searchTerm: "",
+      url: ""
     }
   }
-
-  componentDidMount() {
-    axios.get('http://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=400')
-      .then(res => {
-        const arrayOfStories = res.data.hits
-        this.setState({ arrayOfStories });
-      })
-  }
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
+  
+  componentDidUpdate() {
+    axios.get(`http://hn.algolia.com/api/v1/search?query=${this.state.url}`)
+    .then(res => {
+      const arrayOfStories = res.data.hits
+      this.setState({ arrayOfStories });
     })
   }
-
-  filterSearch(term) {
-    return (item) => {
-      return(
-        item.title.toLowerCase().includes(term.toLowerCase())
-        ||
-        item.author.toLowerCase().includes(term.toLowerCase())
-      )
-    }
+  
+  handleChange = (e) => {
+    this.setState({
+      url: e.target.value
+    })
   }
 
   render() {
@@ -42,22 +33,16 @@ class App extends Component {
         <header className="Header">
           <form>
             <input
-              name="searchTerm"
+              name="url"
               type="text"
-              value={this.state.searchTerm}
+              value={this.state.url}
               onChange={ (e) => {this.handleChange(e)} }
               placeholder="Search by Title or Author"
             ></input>
           </form>
         </header>
         <body>
-          { this.state.searchTerm ?
-            <ListArticles
-              article={this.state.arrayOfStories.filter(this.filterSearch(this.state.searchTerm))}
-            /> :
-            <ListArticles article={this.state.arrayOfStories}/>
-          }
-
+          <ListArticles article={this.state.arrayOfStories}/>
         </body>
       </div>
     )
