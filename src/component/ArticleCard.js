@@ -3,6 +3,7 @@ import moment from 'moment'
 
 function ArticleCard(props) {
   const { title, author, url, created_at, comments, points } = props;
+  let date = moment(created_at).format('DD MMM. YYYY')
   return(
     <li style={ {listStyle: "none"} }>
       <div class="articleHeader">
@@ -11,7 +12,7 @@ function ArticleCard(props) {
         <a class="link" href={ url }>({ url })</a>
       </div>
       <div class="articleFooter">
-        <p>{moment({created_at}).format('DD MMM, YYYY')} | {comments} Comments | {points} Points</p>
+        <p>{date} | {comments} Comments | {points} Points</p>
       </div>
     </li>
   )
