@@ -1,0 +1,64 @@
+.App {
+  text-align: center;
+}
+
+header {
+  background-color: rgb(129, 243, 129);
+  padding: 10px;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  max-width: 400px;
+}
+
+body {
+  background-color: rgb(28, 28, 37);
+  color: white;
+}
+
+.articleHeader {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-container {
+  grid-column: span 2;
+  margin-bottom: -20px;
+}
+
+.title {
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 40px;
+}
+
+li {
+  border-bottom: rgb(163, 97, 108) solid 5px;
+  padding-bottom: 10px;
+  margin: auto;
+}
+
+.link {
+  color: rgb(226, 226, 118);
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+
+.author {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
